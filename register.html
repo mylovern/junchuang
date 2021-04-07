@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <!-- <link rel="shorBtcut icon" type="image/x-icon" href="img/favicon.ico"> -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body,
+        html {
+            height: 100%;
+        }
+        
+        .wrapper {
+            padding: 30px;
+            background: #F5F5F5;
+            height: 110%;
+        }
+        
+        .headImg {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .leftImg {
+            width: 60px;
+            /* height: 100px; */
+        }
+        
+        .rightArrow {
+            width: 10px;
+            margin-left: 5px;
+        }
+        
+        .rightLanguageChange {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-family: PingFang SC;
+            font-weight: bold;
+            color: #E0AF64;
+            margin-bottom: 40px;
+        }
+        
+        .firstLine,
+        .secondLine,
+        .thirdLine {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .fourceLine {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .telNum {
+            flex: 1;
+            background: #fff;
+            position: relative;
+        }
+        
+        #tel,
+        #telen,
+        #username,
+        #node {
+            border: none;
+            outline: none;
+            width: 97%;
+            height: 60px;
+            padding-left: 3%;
+            box-sizing: content-box;
+        }
+        
+        #code,
+        #encode {
+            border: none;
+            outline: none;
+            min-width: 100px;
+            flex: 1;
+            height: 60px;
+            background: #fff;
+            margin-right: 10px;
+            padding-left: 10px;
+        }
+        
+        #password,
+        #showpwdinput {
+            border: none;
+            outline: none;
+            flex: 1;
+            height: 60px;
+            background: #fff;
+            padding-left: 2%;
+            width: calc(98% - 48px);
+            box-sizing: content-box;
+            padding-right: 48px;
+        }
+        
+        #passworden,
+        #showpwdinputen {
+            border: none;
+            outline: none;
+            flex: 1;
+            height: 60px;
+            background: #fff;
+            padding-left: 2%;
+            width: 98%;
+            box-sizing: content-box;
+        }
+        
+        .areaChoice {
+            width: 80px;
+            height: 60px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            border-radius: 0px;
+        }
+        
+        .nationalFlag {
+            width: 30px;
+            margin-right: 8px;
+        }
+        
+        .dropArrow {
+            width: 10px;
+        }
+        
+        .getCode,
+        .getCodeen {
+            background: #E0AF64;
+            text-align: center;
+            line-height: 44px;
+            height: 60px;
+            color: #fff;
+            font-size: 12px;
+            padding: 8px;
+            min-width: 80px;
+            /* box-sizing: content-box; */
+        }
+        
+        .getCodeTime,
+        .getCodeTimeen {
+            min-width: 80px;
+            display: none;
+            background: #E0AF64;
+            text-align: center;
+            line-height: 44px;
+            height: 60px;
+            color: #fff;
+            font-size: 14px;
+            padding: 8px;
+        }
+        
+        .showpassword {
+            display: none;
+            width: 100%;
+            position: relative;
+        }
+        
+        .hidepassword {
+            width: 100%;
+            position: relative;
+        }
+        
+        .showpassword img {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        
+        .hidepassword img {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        
+        .fourceLine input {
+            width: 98%;
+            border: none;
+            outline: none;
+            background: #fff;
+            padding-left: 2%;
+            height: 60px;
+            box-sizing: content-box;
+        }
+        
+        .sendBtn,
+        .sendBtnen {
+            height: 60px;
+            line-height: 60px;
+            background: #E0AF64;
+            text-align: center;
+            color: #fff;
+            border-radius: 4px;
+            box-shadow: 0px 20px 46px 0px rgba(167, 167, 167, 0.16);
+        }
+        
+        .sureServe {
+            padding-top: 10px;
+        }
+        
+        .sureServe input {
+            margin-right: 6px;
+        }
+        
+        .sureServe a {
+            color: #707070;
+        }
+        
+        .languageChange {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .bottomList {
+            background: #fff;
+            width: 100%;
+            height: 120px;
+            position: relative;
+            bottom: -100%;
+            margin-top: -120px;
+        }
+        
+        .bottomList div {
+            width: 100%;
+            height: 60px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            line-height: 60px;
+            text-align: center;
+        }
+        
+        .len {
+            display: none;
+        }
+        
+        .notshow {
+            display: none;
+        }
+        
+        .alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+        
+        .notshowtel {
+            display: none;
+        }
+        
+        .notshowagree {
+            display: none;
+        }
+        
+        .noiceTop {
+            display: none;
+        }
+        
+        .activeBtn {
+            background: #18183B;
+        }
+        
+        .bottom_link {
+            color: #707070;
+        }
+        
+        .bottom_link>a {
+            color: #707070;
+            text-decoration: underline;
+        }
+        
+        .btn {
+            width: 100%;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .sewvmain {
+            width: 1000px;
+            margin: 50px auto;
+        }
+        
+        .sewv {
+            position: relative;
+            width: 100%;
+            display: inline-block;
+            vertical-align: middle;
+            height: 40px;
+            background: #fff;
+        }
+        
+        .sewvtop {
+            width: 100%;
+            height: 40px;
+            border: 1px #D9D9D9 solid;
+            cursor: pointer;
+            border-radius: 2px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .sewvtop>span {
+            width: 70%;
+            height: 40px;
+            white-space: pre;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 12px;
+            line-height: 40px;
+            color: #666;
+            padding: 0 5px;
+        }
+        
+        .sewvtop>em {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sewvbm {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 39px;
+            display: none;
+            border: 1px #D9D9D9 solid;
+            border-radius: 2px;
+            background: #fff;
+            z-index: 9999;
+        }
+        
+        .sewvbm>li {
+            cursor: pointer;
+            width: 100%;
+            height: 26px;
+            line-height: 26px;
+            font-size: 14px;
+            color: #666;
+            padding-left: 5px;
+        }
+        
+        .lbaxztop {
+            animation: rotatete 0.3s linear forwards;
+        }
+        
+        .lbaxztop2 {
+            animation: rotatete2 0.3s linear forwards;
+        }
+        
+        @keyframes rotatete {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(180deg);
+            }
+        }
+        
+        @keyframes rotatete {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(180deg);
+            }
+        }
+        
+        @-moz-keyframes rotatete2 {
+            from {
+                transform: rotate(180deg);
+            }
+            to {
+                transform: rotate(0deg);
+            }
+        }
+        
+        @keyframes rotatete2 {
+            from {
+                transform: rotate(180deg);
+            }
+            to {
+                transform: rotate(0deg);
+            }
+        }
+        
+        .thirdLine_node {
+            margin-bottom: 10px;
+        }
+        
+        .title_node {
+            color: #707070;
+            margin-bottom: 8px;
+        }
+        
+        select {
+            /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+            border: solid 1px #000;
+            /*很关键：将默认的select选择框样式清除*/
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            /*将背景改为红色*/
+            background: transparent;
+            /*加padding防止文字覆盖*/
+            z-index: 9999999999999;
+        }
+        
+        .nodenum {
+            width: 100%;
+            height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noiceTop"></div>
+    <div class="alert alert-danger notshow midflag" role="alert">密码仅限6-16位数字、字母或符号</div>
+    <div class="alert alert-danger notshowtel midflag" role="alert">手机号错误</div>
+    <div class="alert alert-danger notshowagree midflag midflaga" role="alert">请同意用户协议</div>
+    <div class="wrapper">
+        <!-- <div class="headImg"><img class="leftImg" src="./imgs/logo@2x.png" alt="">
+            <div class="rightLanguageChange lcn">简体中文<img class="rightArrow" src="./imgs/down_arrow@2x.png" alt=""></div>
+            <div class="rightLanguageChange len">English<img class="rightArrow" src="./imgs/down_arrow@2x.png" alt=""></div>
+        </div> -->
+        <div class="title lcn">注册</div>
+        <div class="title len">register</div>
+        <!-- <div class="firstLine">
+            <div class="telNum">
+                <input type="text" class="lcn" placeholder="请输入您的用户名" name="username" id="username">
+            </div>
+        </div> -->
+
+        <div class="firstLine">
+            <!-- <div class="areaChoice"></div> -->
+
+            <div class="telNum">
+                <input type="text" class="lcn" placeholder="请输入您的手机号" name="tel" id="tel">
+                <input type="text" class="len" placeholder="please enter your phone" name="tel" id="telen">
+            </div>
+        </div>
+        <div class="secondLine">
+            <input type="text" class="lcn" name="code" placeholder="输入您的验证码" id="code">
+            <input type="text" class="len" name="code" placeholder="enter your verify code" id="encode">
+            <div data-toggle="modal" data-target="#exampleModal" class="getCode lcn">获取验证码</div>
+            <div class="getCodeen len">get code</div>
+            <div class="getCodeTime "></div>
+            <div class="getCodeTimeen"></div>
+        </div>
+        <div class="thirdLine">
+            <div class="hidepassword"> <input type="password" name="password" class="lcn" placeholder="设置登录密码" id="password">
+                <input type="password" name="password" class="len" placeholder="Set login password" id="passworden"><img class="showpasswordImg" src="./assets/img/turn off@2x.png" alt=""></div>
+            <div class="showpassword"> <input type="text" class="lcn" name="password" placeholder="设置登录密码" id="showpwdinput"><input type="text" class="len" name="password" placeholder="Set login password" id="showpwdinputen"><img class="showpasswordImg" src="./assets/img/open@2x.png"
+                    alt=""></div>
+
+        </div>
+        <!-- <div class="thirdLine_node">
+            <div class="title_node">节点昵称:</div>
+            <div>
+                <div class="telNum nodenum">
+
+                </div>
+            </div>
+        </div> -->
+        <div class="fourceLine"> <input type="text" disabled id="invitecode"></div>
+        <div class="sendBtn lcn">注册</div>
+        <div class="sendBtnen len">register</div>
+        <div class="sureServe lcn"><a href="./agreement.html">注册即表示您同意<span style="text-decoration: underline;">《用户协议》</span></a></div>
+        <div class="sureServe len"><input class="sureBtn" id="sureradioEn" type="radio"><a href="./agreement.html">Read and
+					accept User Agreement</a></div>
+        <div class="languageChange">
+            <div class="bottomList">
+                <div class="changeCn">简体中文</div>
+                <div class="changeEn">English</div>
+            </div>
+        </div>
+        <div class="bottom_link">
+            <span>android下载地址:</span>
+            <a href="https://wq4i.isign.pub/"></a>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="background: #ffffff;" class="modal-dialog">
+            <div class="modal-content innerconetent" style="width: 100%; height: 100%;">
+
+            </div>
+
+        </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/2.9.1/umd/popper.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.js"></script>
+    <script src="./assets/register.js"></script>
+
+</body>
+
+</html>
