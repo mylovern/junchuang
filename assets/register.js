@@ -37,7 +37,7 @@ $('.sendBtn').click(() => {
 
         type: 'post',
         dataType: 'json',
-        url: '  http://119.3.177.215:8007/api/auth/register',
+        url: '  http://159.138.24.122:9000/api/auth/register',
         data: {
             mobile: mobile,
             country_code: 86,
@@ -193,35 +193,9 @@ $('.sureBtn').click(() => {
     }
 })
 
-//控制语言切换
-var languageflage = localStorage.getItem('l') == null ? 'zh' : localStorage.getItem('l')
-if (languageflage == 'zh') {
-    $('.lcn').show()
-    $('.len').hide()
-} else {
-    $('.lcn').hide()
-    $('.len').show()
-}
-$('.rightLanguageChange').click(() => {
-    $('.languageChange').show()
-})
-$('.changeCn').click(() => {
-    $('.lcn').show()
-    $('.len').hide()
-    $('.languageChange').hide()
-    languageflage = 'zh'
-    localStorage.setItem('l', languageflage)
-})
 
 
-//进入国家选择
-var c = ''
-if (localStorage.getItem('c') == null) {
-    c = 'cn'
-    localStorage.setItem('c', c)
-} else {
-    c = localStorage.getItem('c')
-}
+
 
 
 
@@ -244,7 +218,7 @@ window.addEventListener('message', function(e) {
     $.ajax({
             type: 'post',
             dataType: "json",
-            url: '  http://119.3.177.215:8007/api/verification/code',
+            url: '  http://159.138.24.122:9000/api/verification/code',
             data: {
                 mobile: $('#tel').val(),
                 action: 'register',
@@ -253,56 +227,25 @@ window.addEventListener('message', function(e) {
                 nc_sig: e.data.sig
             },
             success: function(data) {
-                if (localStorage.getItem('l') == 'zh') {
-                    $('.getCode').hide()
-                    $('.getCodeTime').show()
-                    var num = 60
-                    $('.getCodeTime').html(`<span>${num}(s)</span>`)
-                    var timer = setInterval(() => {
 
-                        if (num == 0) {
-                            clearInterval(timer)
-                            $('.getCode').show()
-                            $('.getCodeTime').hide()
-                        } else {
-                            num = num - 1
-                            $('.getCodeTime').html(`<span>${num}(s)</span>`)
-                        }
+                $('.getCode').hide()
+                $('.getCodeTime').show()
+                var num = 60
+                $('.getCodeTime').html(`<span>${num}(s)</span>`)
+                var timer = setInterval(() => {
 
-                    }, 1000)
+                    if (num == 0) {
+                        clearInterval(timer)
+                        $('.getCode').show()
+                        $('.getCodeTime').hide()
+                    } else {
+                        num = num - 1
+                        $('.getCodeTime').html(`<span>${num}(s)</span>`)
+                    }
 
-                } else {
-                    $('.getCodeen').hide()
-                    $('.getCodeTimeen').show()
-                    var num = 60
-                    $('.getCodeTimeen').html(`<span>${num}(s)</span>`)
-                    var timer = setInterval(() => {
+                }, 1000)
 
-                        if (num == 0) {
-                            clearInterval(timer)
-                            $('.getCodeen').show()
-                            $('.getCodeTimeen').hide()
-                        } else {
-                            num = num - 1
-                            $('.getCodeTimeen').html(`<span>${num}(s)</span>`)
-                        }
 
-                    }, 1000)
-                    var mobile = $('#tel').val()
-                    $.post(
-                        '  http://119.3.177.215:8007/api/verification/code', {
-                            mobile: mobile,
-                            country_code: localStorage.getItem('area'),
-                            type: 'register',
-                            nc_sessionid: localStorage.getItem('csessionid'),
-                            nc_token: localStorage.getItem('nc_token'),
-                            nc_sig: localStorage.getItem('sig')
-                        },
-                        function(data) {
-                            console.log(data)
-                        }
-                    )
-                }
 
                 localStorage.removeItem('csessionid')
                 localStorage.removeItem('nc_token')
