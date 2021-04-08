@@ -198,11 +198,8 @@ $('.sureBtn').click(() => {
 
 
 
-
-
-// 判断是否通过人机验证
-window.addEventListener('message', function(e) {
-
+function getcode(e) {
+    console.log(123)
     if (e) {
         $('#exampleModal').modal('hide')
     }
@@ -213,6 +210,7 @@ window.addEventListener('message', function(e) {
         setTimeout(() => {
             $('.noiceTop').hide()
         }, 3000)
+
         return false
     }
     $.ajax({
@@ -257,7 +255,7 @@ window.addEventListener('message', function(e) {
 
             },
             error: function(err) {
-                console.log(err);
+
                 $('.noiceTop').html(
                     `<div class="alert alert-danger  midflag" role="alert">${err.responseJSON.message}</div>`)
                 $('.noiceTop').show()
@@ -278,4 +276,10 @@ window.addEventListener('message', function(e) {
 
     )
 
-})
+
+}
+// 判断是否通过人机验证
+window.addEventListener('message', getcode, false)
+window.onpagehide = function() {
+    window.removeEventListener('message', getcode, false)
+}
