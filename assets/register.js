@@ -37,7 +37,7 @@ $('.sendBtn').click(() => {
 
         type: 'post',
         dataType: 'json',
-        url: '  http://159.138.24.122:9000/api/auth/register',
+        url: '  http://47.244.158.154:9000/api/auth/register',
         data: {
             mobile: mobile,
             country_code: 86,
@@ -199,10 +199,15 @@ $('.sureBtn').click(() => {
 
 
 function getcode(e) {
-    console.log(123)
+
+
+    if (!e.data.nc_token) {
+        return false
+    }
     if (e) {
         $('#exampleModal').modal('hide')
     }
+    console.log(e)
     if ($('#tel').val() == '') {
         $('.noiceTop').html(
             `<div class="alert alert-danger  midflag" role="alert">请输入电话号码</div>`)
@@ -213,10 +218,11 @@ function getcode(e) {
 
         return false
     }
+
     $.ajax({
             type: 'post',
             dataType: "json",
-            url: '  http://159.138.24.122:9000/api/verification/code',
+            url: 'http://47.244.158.154:9000/api/verification/code',
             data: {
                 mobile: $('#tel').val(),
                 action: 'register',
@@ -244,7 +250,7 @@ function getcode(e) {
                 }, 1000)
 
 
-
+                window.removeEventListener('message', getcode, false)
                 localStorage.removeItem('csessionid')
                 localStorage.removeItem('nc_token')
                 localStorage.removeItem('sig')
@@ -262,6 +268,7 @@ function getcode(e) {
                 setTimeout(() => {
                     $('.noiceTop').hide()
                 }, 3000)
+                window.removeEventListener('message', getcode, false)
                 localStorage.removeItem('csessionid')
                 localStorage.removeItem('nc_token')
                 localStorage.removeItem('sig')
